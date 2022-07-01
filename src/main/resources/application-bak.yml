@@ -1,0 +1,27 @@
+
+spring:
+  application:
+    name: demo
+  rabbitmq:
+    host: 192.168.194.114
+    port: 5673
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      bindings:
+        ## 新版本固定格式  channel名字-{out/in}-{index}
+        demoChannel-out-0:
+          destination: demoExchange
+          contentType: application/json
+        demoChannel-in-0:
+          destination: demoExchange
+          contentType: application/json
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
